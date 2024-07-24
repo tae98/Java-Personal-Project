@@ -1,26 +1,30 @@
 package calculator;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        //결과들을 저장할 queue 생성
+        Queue<Integer> resultQueue = new LinkedList<>();
 
+        //while문 반복 조건
+        while(true){
+            //연산 값 초기화
+            int result =0;
 
-
-        boolean flag = true;
-        while(flag == true){
-
+            //연산을위한 숫자 인풋 저장
             System.out.print("첫 번쨰 숫자를 입력하세요: ");
             int num1 = sc.nextInt();
-
             System.out.print("두 번쨰 숫자를 입력하세요: ");
             int num2 = sc.nextInt();
 
+            //연산을위한 기호 저장
             System.out.print("사칙연산 기호를 입력하세요: ");
             String tmp =sc.next();
-            int result =0;
             char operator = tmp.charAt(0);
 
             switch(operator){
@@ -43,11 +47,15 @@ public class App {
                     }
             }
             System.out.println("결과: " + result);
+
+            //queue에 값을 저장
+            resultQueue.add(result);
+
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료)");
             String endCommand = sc.next();
 
             if(Objects.equals(endCommand, "exit")){
-                flag = false;
+                break;
             }
 
         }
