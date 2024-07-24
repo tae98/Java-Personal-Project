@@ -51,12 +51,28 @@ public class App {
             //queue에 값을 저장
             resultQueue.add(result);
 
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            String removeTxt = sc.next();
+
+            if(Objects.equals(removeTxt, "remove")){
+                resultQueue.poll();
+            }
+
+            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            String inquiryTxt = sc.next();
+            if(Objects.equals(inquiryTxt, "inquiry")){
+                for(int num: resultQueue){
+                    System.out.println(num);
+                }
+            }
+
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료)");
             String endCommand = sc.next();
-
             if(Objects.equals(endCommand, "exit")){
                 break;
             }
+
+
 
         }
 
