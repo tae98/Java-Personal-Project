@@ -44,8 +44,6 @@ public class App {
             System.out.println("결과: " + result);
 
 
-
-
         }
 
 
