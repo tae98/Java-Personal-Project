@@ -60,6 +60,7 @@ public class App {
 
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             String inquiryTxt = sc.next();
+            //inquiry가 입력됬을때 foreach문을 이용해 프린트
             if(Objects.equals(inquiryTxt, "inquiry")){
                 for(int num: resultQueue){
                     System.out.println(num);
