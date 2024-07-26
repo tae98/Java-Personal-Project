@@ -75,6 +75,11 @@ public class App {
                 //저장된 값들조회
                 System.out.println("현제 저장된 원의 넓이 값:");
                 circleCalculator.inquiryQueue(circleCalculator.getCircleQueue());
+            }else{
+                System.out.println("====================================");
+                System.out.println("옵션의 없는값이 입력되었습니다, 다시입력해주세요");
+                System.out.println("====================================");
+                continue;
             }
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료)");
             String endCommand = sc.next();
