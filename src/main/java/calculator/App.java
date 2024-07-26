@@ -4,11 +4,10 @@ import java.util.Objects;
 import java.util.Queue;
 import java.util.Scanner;
 
-import static calculator.Calculator.getCircleQueue;
-
 public class App {
 
-    static Calculator calculator = new Calculator();
+    static ArithmaticCalculator arithmaticCalculator = new ArithmaticCalculator();
+    static CircleCalculator circleCalculator = new CircleCalculator();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -26,18 +25,22 @@ public class App {
             System.out.println("사칙연산을 원하시면 : 1");
             System.out.println("원의 넓이를 계산하고 싶으면: 2");
             calcDecide = sc.nextInt();
+
             if(Objects.equals(calcDecide, 1)){
                 System.out.print("첫 번쨰 숫자를 입력하세요: ");
                 num1 = sc.nextInt();
+
                 System.out.print("두 번쨰 숫자를 입력하세요: ");
                 num2 = sc.nextInt();
+
                 System.out.print("사칙연산 기호를 입력하세요: ");
                 String tmp =sc.next();
                 operator = tmp.charAt(0);
+
                 //예외처리를위한 try문
                 try{
                     //Calculator 클래스의 메서들를활용
-                    result = Calculator.calculate(operator, num1, num2);
+                    result = arithmaticCalculator.calculate(operator, num1, num2);
                     System.out.println(result);
 
                     //queue에저장된값제거
@@ -45,7 +48,7 @@ public class App {
                     String removeTxt = sc.next();
 
                     if(Objects.equals(removeTxt, "remove")){
-                        Calculator.getResultQueue().poll();
+                        arithmaticCalculator.getResultQueue().poll();
                     }
                     //queue에저장된값출력
                     System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
@@ -53,7 +56,7 @@ public class App {
 
                     //inquiry가 입력됬을때 inquiryQueue메서드 이용해 프린트
                     if(Objects.equals(inquiryTxt, "inquiry")){
-                        calculator.inquiryQueue(calculator.getResultQueue());
+                        arithmaticCalculator.inquiryQueue(arithmaticCalculator.getResultQueue());
                     }//예외처리
                 }catch(CalculateException e){
                     System.out.println(e.getMessage());
@@ -63,14 +66,15 @@ public class App {
                 //반지름을 입력받아 계산
                 System.out.println("반지름의 값을 입력해주세요:");
                 radius = sc.nextDouble();
-                result = calculator.circleCalculate(radius);
+                result = circleCalculator.circleCalculate(radius);
                 System.out.println("결과: " + result);
 
                 //계산된값을 해당 큐에 저장
-                getCircleQueue().add(result);
+                circleCalculator.getCircleQueue().add(result);
 
                 //저장된 값들조회
-                calculator.inquiryQueue(getCircleQueue());
+                System.out.println("현제 저장된 원의 넓이 값:");
+                circleCalculator.inquiryQueue(circleCalculator.getCircleQueue());
             }
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료)");
             String endCommand = sc.next();
