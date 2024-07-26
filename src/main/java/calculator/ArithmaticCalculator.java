@@ -5,12 +5,14 @@ import java.util.Queue;
 
 public class ArithmaticCalculator extends Calculator{
     private static Queue<Double> resultQueue;
-    static AddOperator addOperator;
-    static MinusOperator minusOperator;
-    static MultiplyOperator multiplyOperator;
-    static DivideOperator divideOperator;
-    static ModOperator modOperator;
+    //오버라이딩 사용을위한 인터페이스 필드 추가
+    static MasterOperator addOperator;
+    static MasterOperator minusOperator;
+    static MasterOperator multiplyOperator;
+    static MasterOperator divideOperator;
+    static MasterOperator modOperator;
 
+    //모듈러 추가
     ArithmaticCalculator() {
         resultQueue = new LinkedList<>();
         this.addOperator = new AddOperator();
@@ -22,29 +24,29 @@ public class ArithmaticCalculator extends Calculator{
 
     public static double calculate(char operator, double num1, double num2) throws CalculateException {
         double result = 0;
-
+        //오버라이딩된 메서드 사용
         switch(operator){
             case '+':
-                result = addOperator.add(num1, num2);
+                result = addOperator.operate(num1, num2);
                 break;
             case '-':
-                result = minusOperator.minus(num1, num2);
+                result = minusOperator.operate(num1, num2);
                 break;
             case'*':
-                result = multiplyOperator.multiply(num1,num2);
+                result = multiplyOperator.operate(num1,num2);
                 break;
             case'/':
                 if(num2 == 0){
                     throw new CalculateException(num2);
                 }else{
-                    result = divideOperator.divide(num1,num2);
+                    result = divideOperator.operate(num1,num2);
                     break;
                 }
             case '%':
                 if(num2 == 0){
                     throw new CalculateException(num2);
                 }else{
-                    result = modOperator.modulo(num1,num2);
+                    result = modOperator.operate(num1,num2);
                     break;
                 }
             default:
