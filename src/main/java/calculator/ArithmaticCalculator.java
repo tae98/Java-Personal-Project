@@ -9,6 +9,7 @@ public class ArithmaticCalculator extends Calculator{
     static MinusOperator minusOperator;
     static MultiplyOperator multiplyOperator;
     static DivideOperator divideOperator;
+    static ModOperator modOperator;
 
     ArithmaticCalculator() {
         resultQueue = new LinkedList<>();
@@ -16,6 +17,7 @@ public class ArithmaticCalculator extends Calculator{
         this.minusOperator = new MinusOperator();
         this. multiplyOperator = new MultiplyOperator();
         this.divideOperator = new DivideOperator();
+        this.modOperator = new ModOperator();
     }
 
     public static double calculate(char operator, double num1, double num2) throws CalculateException {
@@ -36,6 +38,13 @@ public class ArithmaticCalculator extends Calculator{
                     throw new CalculateException(num2);
                 }else{
                     result = divideOperator.divide(num1,num2);
+                    break;
+                }
+            case '%':
+                if(num2 == 0){
+                    throw new CalculateException(num2);
+                }else{
+                    result = modOperator.modulo(num1,num2);
                     break;
                 }
             default:
