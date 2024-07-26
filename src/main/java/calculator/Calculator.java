@@ -4,8 +4,17 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Calculator {
+
+    public Calculator(char operator, double num1, double num2) {
+
+    }
     //캡슐화
-    private static Queue<Double> resultQueue = new LinkedList<>();
+    private static Queue<Double> resultQueue;
+
+    //생성자&필드 초기화
+    public Calculator(){
+        this.resultQueue = new LinkedList<>();
+    }
 
     public static double calculate(char operator, double num1, double num2) throws CalculateException {
         double result = 0;
