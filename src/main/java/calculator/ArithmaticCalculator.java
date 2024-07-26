@@ -5,9 +5,17 @@ import java.util.Queue;
 
 public class ArithmaticCalculator extends Calculator{
     private static Queue<Double> resultQueue;
+    static AddOperator addOperator;
+    static MinusOperator minusOperator;
+    static MultiplyOperator multiplyOperator;
+    static DivideOperator divideOperator;
 
     ArithmaticCalculator() {
         resultQueue = new LinkedList<>();
+        this.addOperator = new AddOperator();
+        this.minusOperator = new MinusOperator();
+        this. multiplyOperator = new MultiplyOperator();
+        this.divideOperator = new DivideOperator();
     }
 
     public static double calculate(char operator, double num1, double num2) throws CalculateException {
@@ -15,19 +23,19 @@ public class ArithmaticCalculator extends Calculator{
 
         switch(operator){
             case '+':
-                result = num1 + num2;
+                result = addOperator.add(num1, num2);
                 break;
             case '-':
-                result = num1 - num2;
+                result = minusOperator.minus(num1, num2);
                 break;
             case'*':
-                result = num1 * num2;
+                result = multiplyOperator.multiply(num1,num2);
                 break;
             case'/':
                 if(num2 == 0){
                     throw new CalculateException(num2);
                 }else{
-                    result = num1/num2;
+                    result = divideOperator.divide(num1,num2);
                     break;
                 }
             default:
