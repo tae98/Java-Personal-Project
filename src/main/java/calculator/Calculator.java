@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Calculator {
-
-    static Queue<Double> resultQueue = new LinkedList<>();
+    //캡슐화
+    private static Queue<Double> resultQueue = new LinkedList<>();
 
     public static double calculate(char operator, double num1, double num2) throws CalculateException {
         double result = 0;
@@ -33,6 +33,14 @@ public class Calculator {
         resultQueue.add(result);
         return result;
 
+    }
+    //getter메서드
+    public static Queue<Double> getResultQueue(){
+        return resultQueue;
+    }
+    //setter메서드
+    public static void setResultQueue(Queue<Double> newResultQueue){
+        resultQueue = newResultQueue;
     }
 
 }

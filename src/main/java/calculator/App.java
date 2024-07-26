@@ -12,7 +12,6 @@ public class App {
         Scanner sc = new Scanner(System.in);
         double num1 = 0;
         double num2 = 0;
-        double result =0;
         char operator;
 
 
@@ -35,14 +34,14 @@ public class App {
                 String removeTxt = sc.next();
 
                 if(Objects.equals(removeTxt, "remove")){
-                    Calculator.resultQueue.poll();
+                    Calculator.getResultQueue().poll();
                 }
                 //queue에저장된값출력
                 System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                 String inquiryTxt = sc.next();
                 //inquiry가 입력됬을때 foreach문을 이용해 프린트
                 if(Objects.equals(inquiryTxt, "inquiry")){
-                    for(double num: Calculator.resultQueue){
+                    for(double num: Calculator.getResultQueue()){
                         System.out.println(num);
                     }
                 }
